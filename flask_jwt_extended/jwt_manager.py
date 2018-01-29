@@ -386,7 +386,7 @@ class JWTManager(object):
         )
         return refresh_token
 
-    def _create_access_token(self, identity, fresh=False, expires_delta=None):
+    def _create_access_token(self, identity, fresh=False, expires_delta=None, additional=None):
         if expires_delta is None:
             expires_delta = config.access_expires
 
@@ -399,7 +399,7 @@ class JWTManager(object):
             user_claims=self._user_claims_callback(identity),
             csrf=config.csrf_protect,
             identity_claim_key=config.identity_claim_key,
-            user_claims_key=config.user_claims_key
+            user_claims_key=config.user_claims_key,
+            additional=additional
         )
         return access_token
-

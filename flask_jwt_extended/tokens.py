@@ -31,7 +31,7 @@ def _encode_jwt(additional_token_data, expires_delta, secret, algorithm):
 
 
 def encode_access_token(identity, secret, algorithm, expires_delta, fresh,
-                        user_claims, csrf, identity_claim_key, user_claims_key):
+                        user_claims, csrf, identity_claim_key, user_claims_key, additional):
     """
     Creates a new encoded (utf-8) access token.
 
@@ -63,6 +63,9 @@ def encode_access_token(identity, secret, algorithm, expires_delta, fresh,
         'fresh': fresh,
         'type': 'access',
     }
+
+    if additional:
+        token_data = {**token_data, **additional}
 
     # Don't add extra data to the token if user_claims is empty.
     if user_claims:
