@@ -64,8 +64,7 @@ def encode_access_token(identity, secret, algorithm, expires_delta, fresh,
         'type': 'access',
     }
 
-    if additional:
-        token_data = {**token_data, **additional}
+    token_data = {**token_data, **additional}
 
     # Don't add extra data to the token if user_claims is empty.
     if user_claims:

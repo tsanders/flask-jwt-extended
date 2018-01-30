@@ -109,7 +109,7 @@ def create_access_token(identity, fresh=False, expires_delta=None, additional=No
     :return: An encoded access token
     """
     jwt_manager = _get_jwt_manager()
-    return jwt_manager._create_access_token(identity, fresh, expires_delta, additional=None)
+    return jwt_manager._create_access_token(identity, fresh, expires_delta, additional=additional)
 
 
 def create_refresh_token(identity, expires_delta=None):
